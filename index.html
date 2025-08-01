@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Día de la Novia</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- Google Fonts: Dancing Script y Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f3e7f9, #d9c7e8);
+      color: #4a2c5e;
+      overflow-x: hidden;
+    }
+    h1, h2 {
+      font-family: 'Dancing Script', cursive;
+      color: #6b3e8e;
+    }
+    .flower-pattern {
+      background-image: url('https://www.transparenttextures.com/patterns/flowers.png');
+      background-blend-mode: overlay;
+      opacity: 0.2;
+    }
+    .button-anim {
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .button-anim:hover {
+      transform: scale(1.1);
+      background-color: #7b4ca0;
+    }
+    .message-card {
+      display: none;
+      animation: fadeIn 0.5s ease forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .swiper-slide img, .swiper-slide video {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      border-radius: 1rem;
+    }
+    .swiper {
+      width: 100%;
+      height: 400px; /* Ajuste para asegurar visibilidad */
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center py-12">
+  <!-- Header -->
+  <header class="text-center mb-12">
+    <h1 class="text-5xl md:text-7xl font-bold animate-pulse">¡Para Verito!</h1>
+    <p class="text-xl mt-4">Un regalo especial por el Día de la Novia</p>
+  </header>
+
+  <!-- Botones con Mensajes -->
+  <section class="flex flex-wrap justify-center gap-6 mb-12 relative">
+    <button id="btn1" class="button-anim bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg">Mensaje 1</button>
+    <button id="btn2" class="button-anim bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg">Mensaje 2</button>
+    <button id="btn3" class="button-anim bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg">Mensaje 3</button>
+  </section>
+
+  <!-- Contenedor de Mensajes -->
+  <div id="message-container" class="w-full max-w-md mx-auto text-center">
+    <div id="msg1" class="message-card bg-white p-6 rounded-lg shadow-xl flower-pattern">
+      <h2 class="text-3xl mb-4">Vero, mi amor</h2>
+      <p>Eres la chispa que ilumina mis días, y no puedo esperar a llamarte mi novia en solo 3 días.</p>
+    </div>
+    <div id="msg2" class="message-card bg-white p-6 rounded-lg shadow-xl flower-pattern">
+      <h2 class="text-3xl mb-4">Verito, mi tesoro</h2>
+      <p>Cada momento contigo es como un sueño del que nunca quiero despertar.</p>
+    </div>
+    <div id="msg3" class="message-card bg-white p-6 rounded-lg shadow-xl flower-pattern">
+      <h2 class="text-3xl mb-4">Mi Vero hermosa</h2>
+      <p>Este Día de la Novia es solo el comienzo de todo lo que quiero compartir contigo.</p>
+    </div>
+  </div>
+
+  <!-- Carrusel de Fotos y Videos -->
+  <section class="w-full max-w-4xl mx-auto mb-12">
+    <h2 class="text-4xl text-center mb-8">Nuestros Momentos</h2>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <!-- Instrucciones para agregar fotos/videos -->
+        <div class="swiper-slide">
+          <img src="https://via.placeholder.com/600x400?text=Foto+1" alt="Momento 1">
+        </div>
+        <div class="swiper-slide">
+          <video controls>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+          </video>
+        </div>
+        <div class="swiper-slide">
+          <img src="https://via.placeholder.com/600x400?text=Foto+2" alt="Momento 2">
+        </div>
+        <!-- Agrega más slides reemplazando los enlaces -->
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center mt-12">
+    <p class="text-lg">Hecho con ❤️ para Verónica</p>
+  </footer>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- JavaScript -->
+  <script>
+    // Animaciones con GSAP
+    gsap.from('header', { duration: 1, y: -50, opacity: 0, ease: 'power3.out' });
+    gsap.from('.button-anim', { duration: 0.8, scale: 0, stagger: 0.2, ease: 'back.out(1.7)' });
+
+    // Animación de flotación para botones 1, 2 y 3
+    gsap.to('#btn1, #btn2, #btn3', {
+      y: -10,
+      duration: 1.5,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1
+    });
+
+    // Botones para mostrar mensajes
+    const buttons = [
+      { btn: document.getElementById('btn1'), msg: document.getElementById('msg1') },
+      { btn: document.getElementById('btn2'), msg: document.getElementById('msg2') },
+      { btn: document.getElementById('btn3'), msg: document.getElementById('msg3') }
+    ];
+
+    buttons.forEach(({ btn, msg }) => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(item => item.msg.style.display = 'none');
+        msg.style.display = 'block';
+        gsap.from(msg, { duration: 0.5, y: 20, opacity: 0, ease: 'power2.out' });
+      });
+    });
+
+    // Inicializar Swiper
+    document.addEventListener('DOMContentLoaded', () => {
+      const swiper = new Swiper('.mySwiper', {
+        loop: true,
+        pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+        autoplay: { delay: 5000, disableOnInteraction: false },
+        effect: 'fade',
+        fadeEffect: { crossFade: true }
+      });
+    });
+  </script>
+</body>
+</html>
