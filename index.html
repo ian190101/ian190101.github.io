@@ -12,6 +12,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <!-- YouTube IFrame Player API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -43,15 +45,33 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .swiper-slide img, .swiper-slide video {
+    .swiper-slide img, .swiper-slide video, .swiper-slide iframe {
       object-fit: cover;
       width: 100%;
       height: 100%;
       border-radius: 1rem;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
     .swiper {
       width: 100%;
-      height: 400px; /* Ajuste para asegurar visibilidad */
+      height: 500px; /* Ajuste para asegurar visibilidad */
+    }
+    .swiper-slide {
+      position: relative; /* Necesario para posicionar iframes */
+    }
+    #lyrics-container {
+      display: none;
+      white-space: pre-wrap;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.25rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+    #daisy-canvas {
+      display: block;
+      margin: 0 auto;
     }
   </style>
 </head>
@@ -62,48 +82,20 @@
     <p class="text-xl mt-4">Un regalo especial por el Día de la Novia</p>
   </header>
 
-  <!-- Botones con Mensajes -->
-  <section class="flex flex-wrap justify-center gap-6 mb-12 relative">
-    <button id="btn1" class="button-anim bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg">Mensaje 1</button>
-    <button id="btn2" class="button-anim bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg">Mensaje 2</button>
-    <button id="btn3" class="button-anim bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg">Mensaje 3</button>
-  </section>
-
-  <!-- Contenedor de Mensajes -->
-  <div id="message-container" class="w-full max-w-md mx-auto text-center">
-    <div id="msg1" class="message-card bg-white p-6 rounded-lg shadow-xl flower-pattern">
-      <h2 class="text-3xl mb-4">Vero, mi amor</h2>
-      <p>Eres la chispa que ilumina mis días, y no puedo esperar a llamarte mi novia en solo 3 días.</p>
-    </div>
-    <div id="msg2" class="message-card bg-white p-6 rounded-lg shadow-xl flower-pattern">
-      <h2 class="text-3xl mb-4">Verito, mi tesoro</h2>
-      <p>Cada momento contigo es como un sueño del que nunca quiero despertar.</p>
-    </div>
-    <div id="msg3" class="message-card bg-white p-6 rounded-lg shadow-xl flower-pattern">
-      <h2 class="text-3xl mb-4">Mi Vero hermosa</h2>
-      <p>Este Día de la Novia es solo el comienzo de todo lo que quiero compartir contigo.</p>
-    </div>
-  </div>
-
   <!-- Carrusel de Fotos y Videos -->
   <section class="w-full max-w-4xl mx-auto mb-12">
-    <h2 class="text-4xl text-center mb-8">Nuestros Momentos</h2>
+    <h2 class="text-4xl text-center mb-8">Te quiero Muchote!!!</h2>
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
-        <!-- Instrucciones para agregar fotos/videos -->
         <div class="swiper-slide">
-          <img src="https://via.placeholder.com/600x400?text=Foto+1" alt="Momento 1">
+          <img src="https://scontent.fcbb2-1.fna.fbcdn.net/v/t39.30808-6/526342632_2052961141778791_3954545158442178191_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=XIGYHfN_CksQ7kNvwHu7JAN&_nc_oc=Adl_H29JTkJ3LL6jTXebIdfTY9gehLmUnM6COlH8wzHj2fXEejjFqjSMBM9G1ULTSnE&_nc_zt=23&_nc_ht=scontent.fcbb2-1.fna&_nc_gid=2qHKT9o0pbloASEPcNb1kA&oh=00_AfR4SRlLTUrRWr6UTB2KAKg6UBxkiEYVoW5ZTMxb1ar73A&oe=6892C68D" alt="Nosotros">
         </div>
         <div class="swiper-slide">
-          <video controls>
-            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-            Tu navegador no soporta videos.
-          </video>
+          <iframe id="youtube-video" src="https://www.youtube.com/embed/oZmARV_ctnU?enablejsapi=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="swiper-slide">
-          <img src="https://via.placeholder.com/600x400?text=Foto+2" alt="Momento 2">
+          <img src="https://i.pinimg.com/originals/b0/fc/69/b0fc69471f2c62d4754fe6cc6410c7b2.gif" alt="Besitos">
         </div>
-        <!-- Agrega más slides reemplazando los enlaces -->
       </div>
       <div class="swiper-pagination"></div>
       <div class="swiper-button-next"></div>
@@ -111,9 +103,50 @@
     </div>
   </section>
 
+  <!-- Botones con Mensajes -->
+  <section class="flex flex-wrap justify-center gap-6 mb-12 relative">
+    <button id="btn1" class="button-anim bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg">Clikea</button>
+    <button id="btn2" class="button-anim bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg">Presiona</button>
+    <button id="btn3" class="button-anim bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg">Apreta</button>
+    <button id="btn4" class="button-anim bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg">Toca</button>
+    <button id="play-lyrics" class="button-anim bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg">Reprodúceme</button>
+    <button id="btn-sorpresa" class="button-anim bg-purple-600 text-white px-6 py-3 rounded-full shadow-lg">Sorpresa</button>
+  </section>
+
+  <!-- Contenedor de Mensajes -->
+  <div id="message-container" class="w-full max-w-md mx-auto text-center">
+    <div id="msg1" class="message-card bg-white p-6 rounded-lg shadow-xl flower-pattern">
+      <h2 class="text-3xl mb-4">Sabias que...</h2>
+      <p>Eres la chispa que ilumina mis días y en resumen eres lo mejor que me ha pasado.</p>
+    </div>
+    <div id="msg2" class="message-card bg-white p-6 rounded-lg shadow-xl flower-pattern">
+      <h2 class="text-3xl mb-4">Te digo algo?</h2>
+      <p>Cada momento contigo es unico y me encantan.</p>
+    </div>
+    <div id="msg3" class="message-card bg-white p-6 rounded-lg shadow-xl flower-pattern">
+      <h2 class="text-3xl mb-4">Solo este mes...</h2>
+      <p>Es el comienzo de todo lo que quiero compartir contigo.</p>
+    </div>
+    <div id="msg4" class="message-card bg-white p-6 rounded-lg shadow-xl flower-pattern">
+      <h2 class="text-3xl mb-4">Se que...</h2>
+      <p>No soy perfecto pero quiero compartir mi vida contigo y espero que tu también lo quieras.</p>
+    </div>
+    <div id="lyrics-container" class="message-card bg-white p-6 rounded-lg shadow-xl flower-pattern">
+      <h2 class="text-3xl mb-4">Mi vida eres tú</h2>
+      <p id="lyrics-text"></p>
+    </div>
+    <div id="msg-sorpresa" class="message-card bg-white p-6 rounded-lg shadow-xl flower-pattern">
+      <canvas id="daisy-canvas" width="200" height="300"></canvas>
+      <p class="text-xl mt-4">Para ti 🙈</p>
+    </div>
+  </div>
+
+  <!-- Audio para la canción -->
+  <audio id="song-audio" src="http://playurbanomp3.com/Canciones/Dragon%20Y%20Caballero/Dragon%20Y%20Caballero%20-%20Mi%20Vida%20Eres%20Tu%20(Www.PlayUrbano.Com).mp3"></audio>
+
   <!-- Footer -->
   <footer class="text-center mt-12">
-    <p class="text-lg">Hecho con ❤️ para Verónica</p>
+    <p class="text-lg">Hecho con ❤️ para Vero de Ian</p>
   </footer>
 
   <!-- Swiper JS -->
@@ -124,8 +157,8 @@
     gsap.from('header', { duration: 1, y: -50, opacity: 0, ease: 'power3.out' });
     gsap.from('.button-anim', { duration: 0.8, scale: 0, stagger: 0.2, ease: 'back.out(1.7)' });
 
-    // Animación de flotación para botones 1, 2 y 3
-    gsap.to('#btn1, #btn2, #btn3', {
+    // Animación de flotación para botones
+    gsap.to('#btn1, #btn2, #btn3, #btn4, #play-lyrics, #btn-sorpresa', {
       y: -10,
       duration: 1.5,
       ease: 'sine.inOut',
@@ -137,27 +170,255 @@
     const buttons = [
       { btn: document.getElementById('btn1'), msg: document.getElementById('msg1') },
       { btn: document.getElementById('btn2'), msg: document.getElementById('msg2') },
-      { btn: document.getElementById('btn3'), msg: document.getElementById('msg3') }
+      { btn: document.getElementById('btn3'), msg: document.getElementById('msg3') },
+      { btn: document.getElementById('btn4'), msg: document.getElementById('msg4') },
+      { btn: document.getElementById('btn-sorpresa'), msg: document.getElementById('msg-sorpresa') }
     ];
 
     buttons.forEach(({ btn, msg }) => {
       btn.addEventListener('click', () => {
         buttons.forEach(item => item.msg.style.display = 'none');
+        document.getElementById('lyrics-container').style.display = 'none';
         msg.style.display = 'block';
         gsap.from(msg, { duration: 0.5, y: 20, opacity: 0, ease: 'power2.out' });
+        if (btn.id === 'btn-sorpresa') {
+          drawDaisy();
+        }
       });
     });
 
+    // Función para dibujar la margarita animada
+    function drawDaisy() {
+      const canvas = document.getElementById('daisy-canvas');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const tl = gsap.timeline();
+
+      // Centro amarillo
+      tl.to({}, { duration: 0.5, onUpdate: function() {
+        const progress = this.progress();
+        ctx.beginPath();
+        ctx.arc(100, 100, 20 * progress, 0, 2 * Math.PI);
+        ctx.fillStyle = 'yellow';
+        ctx.fill();
+        ctx.strokeStyle = '#4a2c5e';
+        ctx.stroke();
+      }});
+
+      // Pétalos lilas (8 pétalos)
+      const petalCount = 6;
+      const petalLength = 40;
+      const petalWidth = 15;
+      for (let i = 0; i < petalCount; i++) {
+        tl.to({}, { duration: 0.3, onUpdate: function() {
+          const progress = this.progress();
+          ctx.save();
+          ctx.translate(100, 100);
+          ctx.rotate((i * 2 * Math.PI) / petalCount);
+          ctx.beginPath();
+          ctx.ellipse(0, (petalLength / 2 + 20) * progress, petalWidth * progress, (petalLength / 2) * progress, 0, 0, 2 * Math.PI);
+          ctx.fillStyle = '#c8a2c8'; // Lila
+          ctx.fill();
+          ctx.strokeStyle = '#4a2c5e';
+          ctx.stroke();
+          ctx.restore();
+        }}, '-=0.5'); // Solapamiento para fluidez
+      }
+
+      // Tallo verde
+      tl.to({}, { duration: 0.5, onUpdate: function() {
+        const progress = this.progress();
+        ctx.beginPath();
+        ctx.moveTo(100, 120);
+        ctx.lineTo(100, 120 + (250 - 120) * progress);
+        ctx.strokeStyle = 'green';
+        ctx.lineWidth = 5;
+        ctx.stroke();
+      }});
+
+      // Hoja verde
+      tl.to({}, { duration: 0.3, onUpdate: function() {
+        const progress = this.progress();
+        ctx.beginPath();
+        ctx.ellipse(80, 200, 10 * progress, 20 * progress, Math.PI / 4, 0, 2 * Math.PI);
+        ctx.fillStyle = 'green';
+        ctx.fill();
+        ctx.strokeStyle = '#4a2c5e';
+        ctx.stroke();
+      }});
+    }
+
+    // Letras de la canción con tiempos (en segundos) para sincronización
+    const lyrics = [
+      { text: "Respirando tu aire, soñando tus sueños", time: 10 },
+      { text: "y hoy quiero que sepas que tú estás en ellos", time: 12 },
+      { text: "que eres la culpable de todos mis desvelos", time: 14 },
+      { text: "quiero que comprendas que tú eres mi anhelo", time: 16 },
+      { text: "", time: 22 }, // Espacio
+      { text: "Me paso los días y las noches enteras", time: 23 },
+      { text: "pensando en el amor que corre por mis venas", time: 25 },
+      { text: "pensando que buscaba en alguien que me quisiera", time: 27 },
+      { text: "y que al final encontré a alguien que vale la pena", time: 29 },
+      { text: "Y hoy quiero confesarte que mi vida eres tú", time: 29.7 },
+      { text: "el ángel de mi guarda que me entrega su luz", time: 30.7 },
+      { text: "la que ilumina el callejón sin salida", time: 33 },
+      { text: "la que le ha dado la esperanza a mi vida", time: 35 },
+      { text: "Y hoy quiero confesarte que mi vida eres tú", time: 35.7 },
+      { text: "el ángel de mi guarda que me entrega su luz", time: 36.7 },
+      { text: "la que ilumina el callejón sin salida", time: 39 },
+      { text: "la que le ha dado la esperanza a mi vida", time: 41 },
+      { text: "Estoy aquí a la luz de la vela", time: 62 },
+      { text: "escribiendo una canción a la mujer más bella", time: 64 },
+      { text: "porque quiero que sepa que me enamoré de ella", time: 68 },
+      { text: "y la quiero llevar conmigo hasta las estrellas", time: 71 },
+      { text: "Esa sensación que recorre mi cuerpo", time: 73 },
+      { text: "cada vez que me miras y se detiene el tiempo", time: 75 },
+      { text: "cada vez que me besas me robas el aliento", time: 77 },
+      { text: "tú eres la princesa que me devolvió el cuento", time: 79 },
+      { text: "Y hoy quiero confesarte que mi vida eres tú", time: 79.7 },
+      { text: "el ángel de mi guarda que me entrega su luz", time: 80.7 },
+      { text: "la que ilumina el callejón sin salida", time: 83 },
+      { text: "la que le ha dado la esperanza a mi vida", time: 85 },
+      { text: "Y hoy quiero confesarte que mi vida eres tú", time: 87.7 },
+      { text: "el ángel de mi guarda que me entrega su luz", time: 89.7 },
+      { text: "la que ilumina el callejón sin salida", time: 92 },
+      { text: "la que le ha dado la esperanza a mi vida", time: 94 },
+      { text: "", time: 112 },
+      { text: "Respirando tu aire, soñando tus sueños", time: 124 },
+      { text: "y hoy quiero que sepas que tú estás en ellos", time: 126 },
+      { text: "que eres la culpable de todos mis desvelos", time: 128 },
+      { text: "quiero que comprendas que tú eres mi anhelo", time: 130 },
+      { text: "", time: 130 },
+      { text: "El amor que es, el amor que será", time: 131 },
+      { text: "el amor que sentí por tanto tiempo y verás", time: 133 },
+      { text: "te lo expresaré segundo a segundo", time: 135 },
+      { text: "antes de que por ti se me acabe el mundo", time: 137 },
+      { text: "", time: 140 }
+    ];
+
     // Inicializar Swiper
+    let swiper = null;
+    let player = null;
+
     document.addEventListener('DOMContentLoaded', () => {
-      const swiper = new Swiper('.mySwiper', {
+      swiper = new Swiper('.mySwiper', {
         loop: true,
         pagination: { el: '.swiper-pagination', clickable: true },
         navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
         autoplay: { delay: 5000, disableOnInteraction: false },
         effect: 'fade',
-        fadeEffect: { crossFade: true }
+        fadeEffect: { crossFade: true },
+        on: {
+          slideChange: function () {
+            if (!player) return;
+            if (this.realIndex === 1) {
+              player.playVideo();
+              swiper.autoplay.stop();
+            } else {
+              player.pauseVideo();
+            }
+          }
+        }
       });
+
+      // Cargar la API de YouTube después de Swiper
+      if (typeof YT !== 'undefined' && YT.loaded) {
+        initializeYouTubePlayer();
+      } else {
+        window.onYouTubeIframeAPIReady = initializeYouTubePlayer;
+      }
+    });
+
+    function initializeYouTubePlayer() {
+      player = new YT.Player('youtube-video', {
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      if (swiper && swiper.realIndex === 1) {
+        event.target.playVideo();
+        swiper.autoplay.stop();
+      }
+    }
+
+    function onPlayerStateChange(event) {
+      if (!swiper) return;
+      if (event.data === YT.PlayerState.PLAYING) {
+        swiper.autoplay.stop();
+      } else if (event.data === YT.PlayerState.ENDED) {
+        swiper.slideNext();
+        swiper.autoplay.start();
+      }
+    }
+
+    // Lógica del botón de letras y audio
+    const playLyricsButton = document.getElementById('play-lyrics');
+    const lyricsContainer = document.getElementById('lyrics-container');
+    const lyricsText = document.getElementById('lyrics-text');
+    const songAudio = document.getElementById('song-audio');
+
+    playLyricsButton.addEventListener('click', () => {
+      // Ocultar mensajes y mostrar letras
+      buttons.forEach(item => item.msg.style.display = 'none');
+      lyricsContainer.style.display = 'block';
+      gsap.from(lyricsContainer, { duration: 0.5, y: 20, opacity: 0, ease: 'power2.out' });
+
+      // Iniciar audio
+      songAudio.play().catch(error => {
+        console.error('Error al reproducir el audio:', error);
+      });
+
+      // Animación de escritura de letras
+      let currentLine = 0;
+      let currentChar = 0;
+      let isWriting = true;
+      let startTime = Date.now();
+
+      function typeLine() {
+        if (currentLine >= lyrics.length) {
+          lyricsText.textContent = '';
+          lyricsContainer.style.display = 'none';
+          songAudio.pause();
+          songAudio.currentTime = 0;
+          return;
+        }
+
+        const line = lyrics[currentLine].text;
+        const currentSongTime = (Date.now() - startTime) / 1000;
+
+        if (currentSongTime >= lyrics[currentLine].time) {
+          if (isWriting) {
+            if (currentChar <= line.length) {
+              lyricsText.textContent = line.slice(0, currentChar);
+              currentChar++;
+              setTimeout(typeLine, 50); // Velocidad de escritura (50ms por letra)
+            } else {
+              isWriting = false;
+              setTimeout(typeLine, 200); // Pausa antes de borrar
+            }
+          } else {
+            if (currentChar >= 0) {
+              lyricsText.textContent = line.slice(0, currentChar);
+              currentChar--;
+              setTimeout(typeLine, 9); // Velocidad de borrado (9ms por letra)
+            } else {
+              isWriting = true;
+              currentLine++;
+              setTimeout(typeLine, 0); // Continuar inmediatamente
+            }
+          }
+        } else {
+          setTimeout(typeLine, 100); // Esperar hasta el tiempo de la línea
+        }
+      }
+
+      // Iniciar la animación
+      typeLine();
     });
   </script>
 </body>
